@@ -1,34 +1,24 @@
-<script>
-export default {
-    data() {
-        return {
-            count: 0
-        }
-    },
-    computed: {
-        doubleL() {
-            return 1 + '1';
-        }
-    },
-    methods: {
-        increment(){
-            this.count++
-        }
-    }
+<script setup>
+import {computed, ref} from "vue"
+let count = ref(0)
+const doubleL = computed(() => 1 + '1')
+
+function increment(){
+    count.value++
 }
 </script>
 
 <template>
     <div>
         He{{ doubleL }}o World!
-        <button @click="increment()">Clicks {{ count }}</button>
     </div>
+    <button @click="increment()">Clicks {{ count }}</button>
 </template>
 
 <style scoped>
 div, button{
     padding: 5px;
-    margin: 5px
+    margin: v-bind(count + "px")
 }
 button{
     color: red;
